@@ -5,6 +5,7 @@ export default function Home() {
     <div className={styles.page}>
       <main className={styles.main}>
         <h1 className={styles.titulo}>Meu título</h1>
+        <p>Página principal</p>
       </main>
     </div>
   );
