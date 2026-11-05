@@ -1,11 +1,13 @@
 'use client';
 import { useEffect, useState } from "react";
 import styles from './page.module.css';
+import CardProd from '@/components/CardProd';
 
 export default function Produtos() {
 
     const [prods, setProds] = useState(null);
     const [categorias, setCategorias] = useState(null);
+    const [prodSelected, setProdSelected] = useState(null);
 
     useEffect(() => {
         const fetchProdutos = async () => {
@@ -45,7 +47,7 @@ export default function Produtos() {
 
     const getNomeCategoria = (id_categoria) => {
         const categoria = categorias?.find(cat => cat.id === id_categoria);
-        return categoria? categoria.nome : 'Categoria Indisponível';
+        return categoria ? categoria.nome : 'Categoria Indisponível';
     }
 
     return (
@@ -70,11 +72,11 @@ export default function Produtos() {
                             <tbody>
                                 {
                                     prods.map((prod) => (
-                                        <tr key={prod.id}>
+                                        <tr key={prod.id} onClick={() => setProdSelected(prod)}>
                                             <td>{prod.id}</td>
                                             <td>{prod.nome}</td>
                                             <td>{prod.descricao}</td>
-                                            <td>{prod.categoria_id}</td>
+                                            <td>{getNomeCategoria(prod.categoria_id)}</td>
                                             <td>{prod.quantidade_estoque}</td>
                                             <td>{prod.preco}</td>
                                         </tr>
@@ -83,7 +85,7 @@ export default function Produtos() {
                                 }
                             </tbody>
                         </table>
-
+                                {prodSelected && <CardProd />}
                         {/* 
                         categoria_id: 1
                         descricao: "Notebook com processador Intel Core i5 e 8 GB de RAM."
