@@ -8,6 +8,7 @@ export default function Produtos() {
     const [prods, setProds] = useState(null);
     const [categorias, setCategorias] = useState(null);
     const [prodSelected, setProdSelected] = useState(null);
+    const [busca, setBusca] = useState('');
 
     useEffect(() => {
         const fetchProdutos = async () => {
@@ -50,6 +51,8 @@ export default function Produtos() {
         return categoria ? categoria.nome : 'Categoria Indisponível';
     }
 
+    const filtro = prods?.filter( p => p.nome.includes(busca));
+
     return (
         <div>
             {
@@ -58,6 +61,11 @@ export default function Produtos() {
                     <div>
 
                         <h2>Lista de produtos</h2>
+                        {filtro && filtro.map(f => (
+                            <p key={f.id}>{f.nome}</p>
+                        ))}
+                        <input type="text" placeholder="Faça sua busca" value={busca} onChange={(e) => { setBusca(e.target.value) }} />
+                        {/* crie um input para busca e crie um estado para este input */}
                         <table className={styles.tbl}>
                             <thead>
                                 <tr>

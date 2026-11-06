@@ -1,11 +1,11 @@
-export default function CardProd({produto}) {
+export default function CardProd({ produto }) {
     console.log(produto);
     return (
         <div>
             <h2>id {produto.id} - nome {produto.nome}</h2>
-            <p>descrição</p>
-            <p>estoque</p>
-            <p>preço</p>
+            <p>descrição {produto.descricao}</p>
+            <p>estoque {produto.quantidade_estoque}</p>
+            <p>preço {produto.preco}</p>
         </div>
     )
 }
