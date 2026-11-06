@@ -85,7 +85,8 @@ export default function Produtos() {
                                 }
                             </tbody>
                         </table>
-                                {prodSelected && <CardProd />}
+                        {prodSelected && <CardProd produto={prodSelected} />}
+
                         {/* 
                         categoria_id: 1
                         descricao: "Notebook com processador Intel Core i5 e 8 GB de RAM."
